@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-accent: #e4572e;
+	--color-accent-soft: #fdece6;
+	--color-paper: #faf7f2;
+	--color-ink: #1f1d1a;
+	--color-mute: #6b645b;
+	--color-line: #e7e0d5;
+	--font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+	--font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+body {
+	@apply bg-paper text-ink antialiased;
+}
