@@ -25,7 +25,7 @@ Design:
 
 ## Pieces
 
-### frequency space
+### Fourier Lens
 
 Demonstrate how images live in frequency space, and how keeping/dropping coefficients there is the foundation of many compression techniques (JPEG-style intuition, not a full codec).
 

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+	<defs>
+		<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+			<stop offset="0" stop-color="#fff6e0" />
+			<stop offset="0.12" stop-color="#f3b36b" />
+			<stop offset="0.45" stop-color="#7a3a22" stop-opacity="0.7" />
+			<stop offset="1" stop-color="#16130f" stop-opacity="0" />
+		</radialGradient>
+		<linearGradient id="streak" x1="0" x2="1">
+			<stop offset="0" stop-color="#e4572e" stop-opacity="0" />
+			<stop offset="0.5" stop-color="#f3b36b" stop-opacity="0.9" />
+			<stop offset="1" stop-color="#e4572e" stop-opacity="0" />
+		</linearGradient>
+		<clipPath id="spec"><rect x="220" y="40" width="160" height="160" rx="6" /></clipPath>
+	</defs>
+	<rect width="400" height="240" fill="#fdece6" />
+
+	<!-- image as a coarse pixel grid -->
+	<g transform="translate(20 40)">
+		<rect width="160" height="160" rx="6" fill="#2b2119" />
+		<g>
+			<rect x="0" y="0" width="40" height="40" fill="#3a2c20" />
+			<rect x="40" y="0" width="40" height="40" fill="#5b4a37" />
+			<rect x="80" y="0" width="40" height="40" fill="#8f7a5c" />
+			<rect x="120" y="0" width="40" height="40" fill="#c9b48e" />
+			<rect x="0" y="40" width="40" height="40" fill="#24303a" />
+			<rect x="40" y="40" width="40" height="40" fill="#eadfcf" />
+			<rect x="80" y="40" width="40" height="40" fill="#f2c79a" />
+			<rect x="120" y="40" width="40" height="40" fill="#6c5a44" />
+			<rect x="0" y="80" width="40" height="40" fill="#e9dccb" />
+			<rect x="40" y="80" width="40" height="40" fill="#f6efe4" />
+			<rect x="80" y="80" width="40" height="40" fill="#b9573a" />
+			<rect x="120" y="80" width="40" height="40" fill="#3c3227" />
+			<rect x="0" y="120" width="40" height="40" fill="#d8c9b4" />
+			<rect x="40" y="120" width="40" height="40" fill="#43382b" />
+			<rect x="80" y="120" width="40" height="40" fill="#1e2a2c" />
+			<rect x="120" y="120" width="40" height="40" fill="#8a3b28" />
+		</g>
+	</g>
+
+	<!-- arrow -->
+	<path d="M188 120 h22 m-7 -7 l7 7 l-7 7" fill="none" stroke="#e4572e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+	<!-- spectrum: bright centre, axis streaks, a kept circle -->
+	<g clip-path="url(#spec)">
+		<rect x="220" y="40" width="160" height="160" fill="#16130f" />
+		<rect x="220" y="117" width="160" height="6" fill="url(#streak)" />
+		<rect x="297" y="40" width="6" height="160" fill="url(#streak)" />
+		<circle cx="300" cy="120" r="70" fill="url(#glow)" />
+		<path d="M220 40 L380 200 M380 40 L220 200" stroke="#f3b36b" stroke-opacity="0.12" stroke-width="2" />
+		<rect x="220" y="40" width="160" height="160" fill="#16130f" fill-opacity="0.7" mask="url(#outside)" />
+	</g>
+	<mask id="outside">
+		<rect x="220" y="40" width="160" height="160" fill="#fff" />
+		<circle cx="300" cy="120" r="34" fill="#000" />
+	</mask>
+	<circle cx="300" cy="120" r="34" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="5 4" />
+</svg>

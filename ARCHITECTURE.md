@@ -36,7 +36,7 @@ Pieces:
 
 | Slug | Route | Architectural notes |
 | --- | --- | --- |
-| _none yet_ | | |
+| `fourier-lens` | `/fourier-lens` | Canvas 2D plus one module worker (`transform.worker.ts`) that owns image, spectra and masks and returns finished RGBA frames. Hand-written radix-2 FFT and FFT-based DCT (`fft.ts`, `dct.ts`), working size 512². Masks live in display coordinates, per channel, per transform and colour space. Default image `sample.webp` is imported from the module (a 512² crop of `resources/rijksmuseum-nl-200109383.webp`). Pan/zoom canvas and segmented control are one-offs inside the module for now. |
 
 ## SvelteKit 3 notes
 
