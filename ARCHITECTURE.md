@@ -51,4 +51,4 @@ Pieces:
 - Canvases handle `devicePixelRatio` and resize with their container.
 - Prefer small dependencies; the platform first.
 - Shared controls come from `frontend/src/lib/core/`. A one-off control stays inside the piece module.
-- Landing pages end with a small footer linking "by jakob-r" to https://www.jakob-r.de/coding/ (which carries the legal notice). Piece pages have no footer.
+- Landing pages end with a small footer: "by jakob-r" (→ https://www.jakob-r.de/coding/), source code, license (if the repo has one), and the legal notice and privacy pages on jakob-r.de. Piece pages have no footer.
