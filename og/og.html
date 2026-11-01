@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- Source of frontend/static/og.png (share image). Render with `make og`. -->
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+	html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #faf7f2; color: #1f1d1a; }
+	body { position: relative; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+	.text { position: absolute; left: 80px; top: 150px; width: 520px; }
+	.brand { display: flex; align-items: center; gap: 14px; font-size: 28px; font-weight: 600; }
+	.logo { width: 44px; height: 44px; border-radius: 50%; background: #e4572e; color: #fff; display: grid; place-items: center; font-size: 22px; }
+	h1 { font: 72px/1.05 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; letter-spacing: -0.015em; margin: 34px 0 22px; }
+	p { font-size: 27px; line-height: 1.4; margin: 0; color: #6b645b; }
+	svg.art { position: absolute; left: 600px; top: 0; }
+	.card { position: absolute; left: 820px; top: 360px; width: 320px; background: #fff; border: 2px solid #e7e0d5; border-radius: 16px; overflow: hidden; transform: rotate(3deg); box-shadow: 0 14px 30px -14px rgba(31, 29, 26, 0.3); }
+	.card img { display: block; width: 320px; height: 150px; object-fit: cover; background: #fdece6; }
+	.card div { padding: 12px 16px 14px; font-size: 20px; font-weight: 600; }
+</style>
+</head>
+<body>
+	<div class="text">
+		<div class="brand"><span class="logo">p</span>playground.jakob-r.de</div>
+		<h1>Small things to look at.</h1>
+		<p>Little web toys that explain something, or are just nice to watch.</p>
+	</div>
+
+	<svg class="art" width="600" height="630" viewBox="0 0 600 630">
+		<g id="circles" fill="none" stroke-width="2.5"></g>
+		<path id="trace" fill="none" stroke="#e4572e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<path id="link" fill="none" stroke="#e4572e" stroke-width="2.5" stroke-dasharray="3 8" stroke-linecap="round" />
+		<path id="arm" fill="none" stroke="#1f1d1a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+		<g id="joints"></g>
+	</svg>
+
+	<div class="card"><img src="../frontend/static/pieces/fourier-lens.svg" /><div>Fourier Lens</div></div>
+
+	<script>
+		// Square wave from three odd harmonics, drawn as epicycles feeding a trace.
+		const ns = 'http://www.w3.org/2000/svg';
+		const cx = 150, cy = 210, R = 95, t0 = 0.9;
+		const terms = [1, 3, 5].map((n) => ({ n, r: R / n }));
+		const tip = (t) => {
+			let x = cx, y = cy;
+			const pts = [[x, y]];
+			for (const { n, r } of terms) { x += r * Math.cos(n * t); y -= r * Math.sin(n * t); pts.push([x, y]); }
+			return pts;
+		};
+		const pts = tip(t0);
+		const circles = document.getElementById('circles');
+		terms.forEach(({ r }, i) => {
+			const c = document.createElementNS(ns, 'circle');
+			c.setAttribute('cx', pts[i][0]); c.setAttribute('cy', pts[i][1]); c.setAttribute('r', r);
+			c.setAttribute('stroke', i === 0 ? '#e7e0d5' : '#e4572e'); c.setAttribute('opacity', i === 0 ? 1 : 0.45);
+			if (i === 0) c.setAttribute('fill', '#fdece6');
+			circles.appendChild(c);
+		});
+		document.getElementById('arm').setAttribute('d', 'M' + pts.map((p) => p.join(' ')).join(' L'));
+		const joints = document.getElementById('joints');
+		pts.forEach((p, i) => {
+			const c = document.createElementNS(ns, 'circle');
+			c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]); c.setAttribute('r', i === pts.length - 1 ? 8 : 5);
+			c.setAttribute('fill', i === pts.length - 1 ? '#e4572e' : '#1f1d1a');
+			joints.appendChild(c);
+		});
+		const x0 = 300, dx = 50, end = pts[pts.length - 1];
+		document.getElementById('link').setAttribute('d', `M${end[0]} ${end[1]} H${x0}`);
+		let d = '';
+		for (let k = 0; k <= 240; k++) {
+			const t = t0 + (k / 240) * 2 * Math.PI * 1.6;
+			const y = tip(t)[3][1];
+			d += (k ? ' L' : 'M') + (x0 + k * 1.1).toFixed(1) + ' ' + y.toFixed(1);
+		}
+		document.getElementById('trace').setAttribute('d', d);
+	</script>
+</body>
+</html>

@@ -52,3 +52,4 @@ Pieces:
 - Prefer small dependencies; the platform first.
 - Shared controls come from `frontend/src/lib/core/`. A one-off control stays inside the piece module.
 - Landing pages end with a small footer: "by jakob-r" (→ https://www.jakob-r.de/coding/), source code, license (if the repo has one), and the legal notice and privacy pages on jakob-r.de. Piece pages have no footer.
+- Share image: `og/og.html` is rendered by `make og` (headless Chrome) to `frontend/static/og.png` (1200×630) and set as `og:image`. jakob-r.de/coding uses a copy of it. Re-render when the site changes noticeably.
